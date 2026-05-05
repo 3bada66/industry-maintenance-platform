@@ -1,0 +1,124 @@
+{
+  "core": {
+    "description": "Funzionalità core dell'applicazione",
+    "oldFiles": [
+      "common",
+      "forms",
+      "errors",
+      "menu"
+    ],
+    "newStructure": [
+      "actionsCreate",
+      "actionsEdit",
+      "actionsDelete",
+      "actionsSave",
+      "actionsCancel",
+      "actionsClose",
+      "actionsConfirm",
+      "actionsBack",
+      "actionsNext",
+      "actionsPrevious"
+    ]
+  },
+  "assets": {
+    "description": "Gestione asset e dispositivi",
+    "oldFiles": [
+      "assets",
+      "assetForm",
+      "assetDetail",
+      "assetConnections",
+      "assetCommunications",
+      "assetCustomFields",
+      "assetPhotoUpload",
+      "assetDocumentUpload",
+      "assetSuppliersTab",
+      "assetTimeline",
+      "riskBreakdown",
+      "assettypes",
+      "assetstatuses"
+    ],
+    "newStructure": [
+      "title",
+      "description",
+      "newAsset",
+      "create",
+      "edit",
+      "import",
+      "importedInfo",
+      "filterByStatus",
+      "filterBySite",
+      "filterByArea"
+    ]
+  },
+  "entities": {
+    "description": "Entità principali del sistema",
+    "oldFiles": [
+      "sites",
+      "locations",
+      "areas",
+      "manufacturers",
+      "suppliers",
+      "contacts",
+      "users",
+      "roles"
+    ],
+    "newStructure": [
+      "title",
+      "filterByParent",
+      "filterTree",
+      "area",
+      "parent",
+      "noParent",
+      "newLocation",
+      "create",
+      "edit",
+      "name"
+    ]
+  },
+  "features": {
+    "description": "Funzionalità specifiche",
+    "oldFiles": [
+      "dashboard",
+      "networkMap",
+      "floorplanPositioning",
+      "print",
+      "auditLogs",
+      "profile",
+      "login"
+    ],
+    "newStructure": [
+      "title",
+      "welcome",
+      "overview",
+      "metrics",
+      "analytics",
+      "recentActivity",
+      "quickActions",
+      "alerts",
+      "notifications",
+      "stats"
+    ]
+  },
+  "ui": {
+    "description": "Componenti UI e utilità",
+    "oldFiles": [
+      "utility",
+      "permissions",
+      "roleForm",
+      "documents",
+      "interfaces"
+    ],
+    "newStructure": [
+      "uploadPcap",
+      "selectSite",
+      "selectSiteBeforeUpload",
+      "selectPcap",
+      "preview",
+      "processing",
+      "confirmImport",
+      "filesUploaded",
+      "devicesFound",
+      "newDevicesCreated"
+    ]
+  }
+}

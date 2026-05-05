@@ -1,0 +1,46 @@
+{
+  "title": "Login",
+  "messages": {
+    "emailInvalid": "Please enter a valid email",
+    "passwordRequired": "Password is required",
+    "success": "Login successful",
+    "error": "Login error",
+    "error_generic": "An error occurred",
+    "error_email_required": "Email is required",
+    "error_email_invalid": "Please enter a valid email",
+    "error_password_required": "Password is required",
+    "error_success": "Login successful"
+  },
+  "fields": {
+    "fullName": "Full name",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone1": "Phone 1",
+    "phone2": "Phone 2",
+    "type": "Type",
+    "notes": "Notes",
+    "internal": "Internal",
+    "supplier": "Supplier",
+    "other": "Other"
+  },
+  "strings": {
+    "welcomeMessage": "Welcome to Industry Maintenance Platform",
+    "signIn": "Sign In",
+    "enterCredentials": "Enter your credentials to access",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email",
+    "passwordRequired": "Password is required",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "or": "or",
+    "demoMode": "Demo Mode",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "success": "Login successful",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In"
+  }
+}

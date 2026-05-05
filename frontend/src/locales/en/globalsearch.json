@@ -1,0 +1,28 @@
+{
+    "strings": {
+        "placeholder": "Search across all modules",
+        "results": "Results",
+        "noResults": "No results found",
+        "loading": "Loading...",
+        "search": "Search",
+        "clear": "Clear",
+        "select": "Select",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "restore": "Restore",
+        "startTyping": "Start typing to search...",
+        "loginRequired": "Please log in to use this feature"
+    },
+    "types": {
+        "asset": "Assets",
+        "site": "Sites",
+        "location": "Locations",
+        "manufacturer": "Manufacturers",
+        "contact": "Contacts",
+        "role": "Roles",
+        "user": "Users",
+        "supplier": "Suppliers"
+    }
+}
+

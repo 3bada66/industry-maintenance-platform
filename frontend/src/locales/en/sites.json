@@ -1,0 +1,35 @@
+{
+    "title": "Sites",
+    "messages": {
+        "fetchError": "Error loading sites",
+        "created": "Site created successfully",
+        "createError": "Error creating site",
+        "updated": "Site updated successfully",
+        "updateError": "Error updating site",
+        "deleted": "Site deleted successfully",
+        "deleteError": "Error deleting site",
+        "bulkUpdated": "Sites updated successfully",
+        "bulkUpdateError": "Error updating sites",
+        "restored": "Site restored successfully",
+        "restoreError": "Error restoring site",
+        "hardDeleted": "Site permanently deleted successfully",
+        "hardDeleteError": "Error permanently deleting site",
+        "trashEmptied": "Trash emptied successfully",
+        "emptyTrashError": "Error emptying trash",
+        "filterTree": "Filter site hierarchy",
+        "filterByParent": "Filter by parent site",
+        "noParent": "No parent site",
+        "fetchLocationsError": "Error loading locations",
+        "locationCreated": "Location created successfully",
+        "locationUpdated": "Location updated successfully",
+        "updateLocationError": "Error updating location"
+    },
+    "fields": {
+        "parent": "Parent site"
+    },
+    "strings": {
+        "select": "Select",
+        "info": "Information"
+    }
+}
+

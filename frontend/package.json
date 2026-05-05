@@ -1,0 +1,42 @@
+{
+  "name": "industry-maintenance-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:unit": "vitest run",
+    "test:e2e": "cypress run",
+    "i18n:consolidate": "node scripts/consolidate-translations.js",
+    "i18n:find-hardcoded": "node scripts/find-hardcoded-strings.js",
+    "i18n:validate": "node scripts/validate-translations.js",
+    "i18n:stats": "node scripts/translation-stats.js"
+  },
+  "dependencies": {
+    "@vueup/vue-quill": "^1.2.0",
+    "axios": "^1.6.2",
+    "chart.js": "^4.4.0",
+    "dompurify": "^3.0.0",
+    "jwt-decode": "^4.0.0",
+    "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^2.4.0",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.38.1",
+    "vis-network": "^9.1.13",
+    "vue": "^3.3.0",
+    "vue-chartjs": "^5.2.0",
+    "vue-i18n": "^12.0.0-alpha.2",
+    "vue-router": "^4.2.5",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.0",
+    "@vue/test-utils": "^2.3.0",
+    "cypress": "^12.0.0",
+    "jsdom": "^22.1.0",
+    "vite": "^4.5.0",
+    "vitest": "^0.34.0"
+  }
+}

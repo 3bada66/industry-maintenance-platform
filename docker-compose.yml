@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.email=admin@imp.local"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"  # Traefik dashboard
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - industry-maintenance-platform-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.imp.local`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: industry-maintenance-platform_user
+      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: industry-maintenance-platform
+    volumes:
+      - industry-maintenance-platform_postgres_data:/var/lib/postgresql/data
+    networks:
+      - industry-maintenance-platform-network
+    labels:
+      - "traefik.enable=false"
+    expose:
+      - "5432"
+
+  backend:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=postgresql://industry-maintenance-platform_user:secure_password_123@db:5432/industry-maintenance-platform
+      - SECRET_KEY=your-secret-key-change-in-production
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - CORS_ORIGINS=http://imp.local,https://imp.local,http://localhost,https://localhost
+      - ENVIRONMENT=development
+      - DEBUG=true
+    depends_on:
+      - db
+    networks:
+      - industry-maintenance-platform-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`imp.local`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.routers.backend.priority=100"
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+      - "traefik.http.middlewares.backend-strip.stripprefix.prefixes=/api"
+      - "traefik.http.routers.backend.middlewares=backend-strip"
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    networks:
+      - industry-maintenance-platform-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`imp.local`) && !PathPrefix(`/api`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.routers.frontend.priority=10"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+
+volumes:
+  industry-maintenance-platform_postgres_data:
+
+networks:
+  industry-maintenance-platform-network:
+    driver: bridge

@@ -1,0 +1,52 @@
+{
+  "title": "Manufacturers",
+  "messages": {
+    "fetchError": "Error loading manufacturers",
+    "created": "Manufacturer created successfully",
+    "createError": "Error creating manufacturer",
+    "updated": "Manufacturer updated successfully",
+    "updateError": "Error updating manufacturer",
+    "deleted": "Manufacturer deleted successfully",
+    "deleteError": "Error deleting manufacturer",
+    "bulkUpdated": "Manufacturers updated successfully",
+    "bulkUpdateError": "Error updating manufacturers",
+    "restored": "Manufacturer restored successfully",
+    "restoreError": "Error restoring manufacturer",
+    "hardDeleted": "Manufacturer permanently deleted successfully",
+    "hardDeleteError": "Error permanently deleting manufacturer",
+    "trashEmptied": "Trash emptied successfully",
+    "emptyTrashError": "Error emptying trash"
+  },
+  "fields": {
+    "name": "Name",
+    "description": "Description",
+    "code": "Code",
+    "website": "Website",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "strings": {
+    "select": "Select",
+    "info": "Information",
+    "manufacturer": "Manufacturer"
+  },
+  "manufacturerImport": {
+    "title": "Import Manufacturers",
+    "downloadTemplate": "Download Template",
+    "importantInfo": "Important Information",
+    "requiredFields": "Required Fields",
+    "nameRequired": "Name is required",
+    "websiteRequired": "Website is required",
+    "emailRequired": "Email is required",
+    "phoneRequired": "Phone is required",
+    "validFormats": "Valid Formats",
+    "emailFormat": "Email must be in email format",
+    "phoneFormat": "Phone must be in phone format",
+    "toCreate": "To Create",
+    "toUpdate": "To Update",
+    "errors": "Errors",
+    "row": "Row",
+    "confirm": "Confirm",
+    "readError": "Error reading file"
+  }
+}

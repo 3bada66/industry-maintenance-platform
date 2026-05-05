@@ -1,0 +1,78 @@
+{
+  "title": "Roles",
+  "actions": {
+    "testPermissions": "Test Permissions",
+    "refreshPermissions": "Refresh Permissions"
+  },
+  "fields": {
+    "permissions": "Permissions",
+    "createdAt": "Data Creazione",
+    "parentRole": "Parent Role",
+    "selectParentRole": "Select parent role",
+    "inheritable": "Ereditabile"
+  },
+  "messages": {
+    "fetchError": "Error loading roles",
+    "deleteError": "Error deleting role",
+    "updateError": "Error updating role",
+    "createError": "Error creating role",
+    "testPermissionsError": "Error testing permissions",
+    "permissionsUpdated": "Permissions updated successfully",
+    "permissionsUpdateError": "Error updating permissions"
+  },
+  "sections": {
+    "assets": "Devices",
+    "sites": "Sites",
+    "locations": "Locations",
+    "suppliers": "Suppliers",
+    "contacts": "Contacts",
+    "manufacturers": "Manufacturers",
+    "asset_types": "Device Types",
+    "asset_statuses": "Device Statuses",
+    "utility": "Utility",
+    "audit_logs": "Audit Logs",
+    "asset_documents": "Device Documents",
+    "asset_photos": "Device Photos",
+    "locations_floormap": "Location Floorplans",
+    "basicInfo": "Basic Information",
+    "permissions": "Permissions"
+  },
+  "levels": {
+    "none": "None",
+    "read": "Read",
+    "write": "Write",
+    "delete": "Deletion"
+  },
+  "strings": {
+    "nameRequired": "Role name is required",
+    "updated": "Role updated successfully",
+    "created": "Role created successfully",
+    "saveError": "Error saving role",
+    "inheritanceInfo": "Parent role permissions will be automatically inherited",
+    "selectParentRole": "Select parent role",
+    "inheritableDescription": "This role can be used as a parent role for other roles"
+  },
+  "permissions": {
+    "none": "None",
+    "read": "Read",
+    "write": "Write",
+    "delete": "Deletion",
+    "bulk": "Bulk Operations",
+    "users": "Users",
+    "roles": "Roles",
+    "assets": "Devices",
+    "sites": "Sites",
+    "locations": "Locations",
+    "suppliers": "Suppliers",
+    "contacts": "Contacts",
+    "reset_user_password": "Reset User Password",
+    "manufacturers": "Manufacturers",
+    "noneDescription": "No access to resources",
+    "readDescription": "Can view resources but cannot modify them",
+    "writeDescription": "Can create and modify resources",
+    "deleteDescription": "Can delete resources",
+    "bulkDescription": "Can perform operations on multiple resources at once",
+    "resetPassword": "Reset Password",
+    "resetPasswordDescription": "Can reset passwords of other users"
+  }
+}

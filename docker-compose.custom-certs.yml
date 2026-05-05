@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx-custom-certs.conf:/etc/nginx/nginx.conf:ro"
+      - "${CERT_PATH}:/etc/nginx/ssl/cert.crt:ro"
+      - "${KEY_PATH}:/etc/nginx/ssl/key.key:ro"
+      - "${CA_PATH}:/etc/nginx/ssl/ca.crt:ro"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - industry-maintenance-platform-network
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: industry-maintenance-platform_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: industry-maintenance-platform
+    volumes:
+      - industry-maintenance-platform_postgres_data:/var/lib/postgresql/data
+    networks:
+      - industry-maintenance-platform-network
+    expose:
+      - "5432"
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=postgresql://industry-maintenance-platform_user:${DB_PASSWORD}@db:5432/industry-maintenance-platform
+      - SECRET_KEY=${SECRET_KEY}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - CORS_ORIGINS=https://${DOMAIN},https://${WWW_DOMAIN}
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - SECURE_COOKIES=true
+      - SAME_SITE_COOKIES=strict
+    depends_on:
+      - db
+    networks:
+      - industry-maintenance-platform-network
+    restart: unless-stopped
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+      args:
+        VITE_API_URL: https://${DOMAIN}
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=https://${DOMAIN}
+    depends_on:
+      - backend
+    networks:
+      - industry-maintenance-platform-network
+    restart: unless-stopped
+
+volumes:
+  industry-maintenance-platform_postgres_data:
+
+networks:
+  industry-maintenance-platform-network:
+    driver: bridge

@@ -1,0 +1,29 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome to Industry Maintenance Platform",
+  "overview": "System Overview",
+  "stats": {
+    "totalAssets": "Total Assets",
+    "criticalAssets": "Critical Assets",
+    "assetsAtRisk": "Assets at Risk",
+    "recentChanges": "Recent Changes",
+    "activeAssets": "Active Assets",
+    "inactiveAssets": "Inactive Assets"
+  },
+  "charts": {
+    "assetsByStatus": "Assets by Status",
+    "assetsByType": "Assets by Type",
+    "riskDistribution": "Risk Distribution"
+  },
+  "recentActivity": "Recent Activity",
+  "quickActions": "Quick Actions",
+  "alerts": "Alerts",
+  "actions": {
+    "viewAllAssets": "View All Assets",
+    "recalculateRiskScores": "Recalculate Risk Scores"
+  },
+  "tables": {
+    "topRiskyAssets": "Top Risky Assets",
+    "latestAssets": "Latest Assets"
+  }
+}

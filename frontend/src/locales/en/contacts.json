@@ -1,0 +1,55 @@
+{
+  "title": "Contacts",
+  "messages": {
+    "fetchError": "Error loading contacts",
+    "created": "Contact created successfully",
+    "createError": "Error creating contact",
+    "updated": "Contact updated successfully",
+    "updateError": "Error updating contact",
+    "deleted": "Contact deleted successfully",
+    "deleteError": "Error deleting contact",
+    "bulkUpdated": "Contacts updated successfully",
+    "bulkUpdateError": "Error updating contacts",
+    "restored": "Contact restored successfully",
+    "restoreError": "Error restoring contact",
+    "hardDeleted": "Contact permanently deleted successfully",
+    "hardDeleteError": "Error permanently deleting contact",
+    "trashEmptied": "Trash emptied successfully",
+    "emptyTrashError": "Error emptying trash"
+  },
+  "fields": {
+    "fullName": "Full name",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone1": "Phone 1",
+    "phone2": "Phone 2",
+    "type": "Type",
+    "notes": "Notes",
+    "internal": "Internal",
+    "supplier": "Supplier",
+    "other": "Other"
+  },
+  "strings": {
+    "select": "Select",
+    "notes_placeholder": "Enter notes",
+    "info": "Information",
+    "addContacts": "Add contacts"
+  },
+  "contactImport": {
+    "title": "Import Contacts",
+    "downloadTemplate": "Download Template",
+    "importantInfo": "Important Information",
+    "requiredFields": "Required Fields",
+    "nameRequired": "Name is required",
+    "surnameRequired": "Surname is required",
+    "validFormats": "Valid Formats",
+    "emailFormat": "Email must be in email format",
+    "phoneFormat": "Phone must be in phone format",
+    "toCreate": "To Create",
+    "toUpdate": "To Update",
+    "errors": "Errors",
+    "row": "Row",
+    "confirm": "Confirm",
+    "readError": "Error reading file"
+  }
+}

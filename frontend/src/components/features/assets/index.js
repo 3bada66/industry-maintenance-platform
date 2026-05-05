@@ -1,0 +1,13 @@
+// Componenti specifici per gli asset
+export { default as AssetPhotoUpload } from './AssetPhotoUpload.vue'
+export { default as AssetDocumentUpload } from './AssetDocumentUpload.vue'
+export { default as AssetCommunicationGraph } from './AssetCommunicationGraph.vue'
+export { default as AssetConnectionGraph } from './AssetConnectionGraph.vue'
+export { default as AssetConnections } from './AssetConnections.vue'
+export { default as FloorplanWithMarkers } from './FloorplanWithMarkers.vue'
+export { default as AssetCustomFields } from './AssetCustomFields.vue'
+export { default as AssetTimeline } from './AssetTimeline.vue'
+export { default as AssetCommunications } from './AssetCommunications.vue' 
+export { default as AssetSuppliersTab } from './AssetSuppliersTab.vue'
+export { default as RiskBreakdown } from './RiskBreakdown.vue'
+export { default as FloorplanUploader } from './FloorplanUploader.vue'

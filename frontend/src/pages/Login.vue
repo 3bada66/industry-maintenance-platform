@@ -1,0 +1,630 @@
+<template>
+  <div class="login-container">
+    <!-- Background con pattern geometrico -->
+    <div class="login-background">
+      <div class="background-pattern"></div>
+      <div class="background-overlay"></div>
+    </div>
+
+    <!-- Container principale -->
+    <div class="login-content">
+      <!-- Brand title -->
+      <div class="login-brand">
+        <h1 class="brand-title">{{ $t('login.title') }}</h1>
+        <p class="brand-subtitle">{{ $t('login.strings.welcomeMessage') }}</p>
+      </div>
+
+      <!-- Form di login -->
+      <div class="login-form-container">
+        <div class="form-card">
+          <div class="form-header">
+            <h2>{{ $t('login.strings.signIn') }}</h2>
+            <p>{{ $t('login.strings.enterCredentials') }}</p>
+          </div>
+
+          <form @submit.prevent="handleSubmit" class="login-form">
+            <div class="form-group">
+              <label for="email" class="form-label">
+                <i class="pi pi-envelope"></i>
+                {{ $t('login.strings.email') }}
+              </label>
+              <div class="input-wrapper">
+                <InputText 
+                  id="email" 
+                  v-model="email" 
+                  type="email" 
+                  required 
+                  class="form-input"
+                  :placeholder="$t('login.strings.emailPlaceholder')"
+                  :class="{ 'p-invalid': emailError }"
+                />
+                <div class="input-icon">
+                  <i class="pi pi-envelope"></i>
+                </div>
+              </div>
+              <small v-if="emailError" class="error-message">{{ emailError }}</small>
+            </div>
+
+            <div class="form-group">
+              <label for="password_input" class="form-label">
+                <i class="pi pi-lock"></i>
+                {{ $t('login.strings.password') }}
+              </label>
+              <div class="input-wrapper">
+                <Password 
+                  id="password" 
+                  v-model="password" 
+                  :feedback="false" 
+                  required 
+                  toggleMask 
+                  class="form-input"
+                  :placeholder="$t('login.strings.passwordPlaceholder')"
+                  :class="{ 'p-invalid': passwordError }"
+                  inputId="password_input"
+                />
+                <div class="input-icon">
+                  <i class="pi pi-lock"></i>
+                </div>
+              </div>
+              <small v-if="passwordError" class="error-message">{{ passwordError }}</small>
+            </div>
+
+            <div class="form-options">
+              <div class="remember-me">
+                <Checkbox 
+                  v-model="rememberMe" 
+                  :binary="true" 
+                  :inputId="'remember'"
+                />
+                <label for="remember" class="checkbox-label">{{ $t('login.strings.rememberMe') }}</label>
+              </div>
+            </div>
+
+            <Button 
+              type="submit" 
+              :label="$t('login.strings.submit')" 
+              :loading="loading" 
+              class="login-button"
+              :disabled="!isFormValid"
+            />
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast per notifiche -->
+    <Toast position="top-right" />
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useToast } from 'primevue/usetoast'
+import { useAuthStore } from '../store/auth'
+import { useI18n } from 'vue-i18n'
+
+import InputText from 'primevue/inputtext'
+import Password from 'primevue/password'
+import Button from 'primevue/button'
+import Checkbox from 'primevue/checkbox'
+import Toast from 'primevue/toast'
+
+const email = ref('')
+const password = ref('')
+const rememberMe = ref(false)
+const loading = ref(false)
+
+const emailError = ref('')
+const passwordError = ref('')
+
+const toast = useToast()
+const authStore = useAuthStore()
+const router = useRouter()
+const { t } = useI18n()
+
+
+// Validazione form
+const isFormValid = computed(() => {
+  return email.value.trim() !== '' && password.value.trim() !== ''
+})
+
+// Validazione email
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+const handleSubmit = async () => {
+  // Reset errori
+  emailError.value = ''
+  passwordError.value = ''
+
+  // Validazione
+  if (!email.value.trim()) {
+    emailError.value = t('login.messages.emailRequired')
+    return
+  }
+
+  if (!validateEmail(email.value)) {
+    emailError.value = t('login.messages.emailInvalid')
+    return
+  }
+
+  if (!password.value.trim()) {
+    passwordError.value = t('login.messages.passwordRequired')
+    return
+  }
+
+  loading.value = true
+  try {
+    await authStore.login(email.value, password.value)
+    toast.add({
+      severity: 'success',
+      summary: t('common.messages.success'),
+      detail: t('login.messages.success'),
+      life: 3000
+    })
+    // navigation is handled by authStore.login — no second push needed
+  } catch (error) {
+    const errorCode = error.response?.data?.error_code
+    let message = t('login.messages.error')
+
+    // Prova a ottenere la traduzione specifica per il codice di errore
+    if (errorCode) {
+      const translatedError = t(`errors.${errorCode}`)
+      // Se la traduzione esiste e non è uguale alla chiave, usala
+      if (translatedError && translatedError !== `errors.${errorCode}`) {
+        message = translatedError
+      }
+    }
+
+    toast.add({
+      severity: 'error',
+      summary: t('common.messages.error'),
+      detail: message,
+      life: 5000
+    })
+  } finally {
+    loading.value = false
+  }
+}
+
+
+</script>
+
+<style scoped>
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+/* Background con pattern */
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.03) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 40%, rgba(102, 126, 234, 0.02) 50%, transparent 60%);
+  animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes backgroundFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+/* Container principale */
+.login-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Brand section */
+.login-brand {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.login-logo {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  transition: transform 0.3s ease;
+}
+
+.login-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-subtitle {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Form container */
+.login-form-container {
+  width: 100%;
+  max-width: 750px;
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 3.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.8);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.9);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.form-header p {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-label i {
+  color: #667eea;
+  font-size: 0.8rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid #3d4455;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  color: #13151a;
+}
+
+.form-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  outline: none;
+}
+
+.form-input.p-invalid {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #667eea;
+  z-index: 2;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Form options */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-label {
+  color: #64748b;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #5a6fd8;
+}
+
+/* Buttons */
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e1e8ed;
+}
+
+.divider span {
+  background: rgba(255,255,255,0.98);
+  padding: 0 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+
+
+/* Form footer */
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.signup-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+  color: #5a6fd8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-content {
+    padding: 1rem;
+  }
+  
+  .form-card {
+    padding: 2rem;
+  }
+  
+  .brand-title {
+    font-size: 2rem;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+/* Entry animation */
+.form-card {
+  animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-brand {
+  animation: fadeInDown 0.5s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Input focus glow animation */
+.input-wrapper {
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+  transform: scale(1.01);
+}
+
+/* Sign In button pulse */
+.login-button:not(:disabled) {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+  50%       { box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.15); }
+}
+
+/* Stili per PrimeVue components */
+:deep(.p-password) {
+  width: 100%;
+  display: block;
+}
+
+:deep(.p-password.p-component) {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+:deep(.p-password-input) {
+  width: 100%;
+  padding: 1rem 3rem 1rem 3rem;
+  border: 2px solid #3d4455;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  color: #13151a;
+}
+
+:deep(.p-password-input:focus) {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  outline: none;
+}
+
+:deep(.p-password-input.p-invalid) {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+:deep(.p-checkbox) {
+  margin-right: 0.5rem;
+}
+
+:deep(.p-checkbox .p-checkbox-box) {
+  border-radius: 4px;
+  border-color: #667eea;
+}
+
+:deep(.p-checkbox .p-checkbox-box.p-highlight) {
+  background: #667eea;
+  border-color: #667eea;
+}
+</style>

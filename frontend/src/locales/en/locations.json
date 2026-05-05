@@ -1,0 +1,61 @@
+{
+  "title": "Locations",
+  "messages": {
+    "fetchError": "Error loading locations",
+    "created": "Location created successfully",
+    "createError": "Error creating location",
+    "updated": "Location updated successfully",
+    "updateError": "Error updating location",
+    "deleted": "Location deleted successfully",
+    "deleteError": "Error deleting location",
+    "bulkUpdated": "Locations updated successfully",
+    "bulkUpdateError": "Error updating locations",
+    "restored": "Location restored successfully",
+    "restoreError": "Error restoring location",
+    "hardDeleted": "Location permanently deleted successfully",
+    "hardDeleteError": "Error permanently deleting location",
+    "trashEmptied": "Trash emptied successfully",
+    "emptyTrashError": "Error emptying trash",
+    "filterBySite": "Filter by area",
+    "filterByFloorplan": "Filter by floorplan"
+  },
+  "fields": {
+    "floorplan": "Floorplan",
+    "area": "Area",
+    "name": "Location Name"
+  },
+  "strings": {
+    "select": "Select",
+    "info": "Information",
+    "floorplanPresent": "Floorplan present",
+    "floorplanAbsent": "Floorplan absent",
+    "floorplan": "Floorplan"
+  },
+  "floorplan": {
+    "title": "Floorplan",
+    "currentFloorplan": "Current floorplan",
+    "chooseLabel": "Upload new floorplan",
+    "uploadLabel": "Upload",
+    "noFileSelected": "No file selected",
+    "floorplanUploaded": "Floorplan uploaded",
+    "uploadError": "Error during upload",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetView": "Reset view",
+    "fitToView": "Fit to view",
+    "savePosition": "Save position",
+    "close": "Close",
+    "noFloorplan": "No floorplan file",
+    "clickToPosition": "Click to position the asset",
+    "instructions": "Instructions",
+    "instruction1": "Click on the floorplan to position the asset",
+    "instruction2": "Use the mouse wheel to zoom",
+    "instruction3": "Use the controls at the top to pan the view",
+    "instruction4": "Drag the marker to move it",
+    "status": "Status",
+    "changesPending": "Changes pending save",
+    "positionSaved": "Position saved successfully",
+    "notPositioned": "Not positioned",
+    "confirmClose": "Are you sure you want to close the window without saving the changes?"
+  }
+}

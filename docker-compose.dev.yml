@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: industry-maintenance-platform_user
+      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: industry-maintenance-platform
+    volumes:
+      - industry-maintenance-platform_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - industry-maintenance-platform-network
+
+  backend:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://industry-maintenance-platform_user:secure_password_123@db:5432/industry-maintenance-platform
+      - SECRET_KEY=your-secret-key-change-in-production
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+      - ENVIRONMENT=development
+      - DEBUG=true
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - industry-maintenance-platform-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - industry-maintenance-platform-network
+
+volumes:
+  industry-maintenance-platform_postgres_data:
+
+networks:
+  industry-maintenance-platform-network:
+    driver: bridge 

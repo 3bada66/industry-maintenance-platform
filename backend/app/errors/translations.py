@@ -1,0 +1,36 @@
+# app/errors/translations.py
+
+messages = {
+    "en": {
+        "INVALID_CREDENTIALS": "Invalid email or password.",
+        "EXPIRED_TOKEN": "Session expired. Please log in again.",
+        "NOT_FOUND": "Resource not found.",
+        "INVALID_USER_CREATION": "Invalid user creation.",
+        "INVALID_USER_DELETION": "Invalid user deletion.",
+        "INVALID_USER_UPDATE": "Invalid user update.",
+        "INVALID_USER_GET": "Invalid user get.",
+        "INVALID_USER_LIST": "Invalid user list.",
+        "INVALID_USER_DELETE": "Invalid user delete.",
+        "INVALID_ASSET_DOCUMENT_FORMAT": "Invalid document format. Allowed types: PDF, DOC, DOCX, TXT, CSV, XLS, XLSX.",
+        "INVALID_FILE_FORMAT": "Invalid file format. Only PCAP files are allowed.",
+        "FILE_TOO_LARGE": "File too large. Maximum size is 50MB.",
+        "VALIDATION_ERROR": "Invalid input data.",
+        "INTERNAL_ERROR": "Internal server error.",
+    },
+    "it": {
+        "INVALID_CREDENTIALS": "Email o password errati.",
+        "EXPIRED_TOKEN": "Sessione scaduta. Effettua di nuovo il login.",
+        "NOT_FOUND": "Risorsa non trovata.",
+        "INVALID_USER_CREATION": "Creazione utente non valida.",
+        "INVALID_USER_DELETION": "Eliminazione utente non valida.",
+        "INVALID_USER_UPDATE": "Aggiornamento utente non valido.",
+        "INVALID_USER_GET": "Ottenimento utente non valido.",
+        "INVALID_USER_LIST": "Elenco utenti non valido.",
+        "INVALID_USER_DELETE": "Eliminazione utente non valida.",
+        "INVALID_ASSET_DOCUMENT_FORMAT": "Formato documento non valido. Tipi consentiti: PDF, DOC, DOCX, TXT, CSV, XLS, XLSX.",
+        "INVALID_FILE_FORMAT": "Formato file non valido. Sono consentiti solo file PCAP.",
+        "FILE_TOO_LARGE": "File troppo grande. Dimensione massima 50MB.",
+        "VALIDATION_ERROR": "Dati di input non validi.",
+        "INTERNAL_ERROR": "Errore interno del server.",
+    },
+}

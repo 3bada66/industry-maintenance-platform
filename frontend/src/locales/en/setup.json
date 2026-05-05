@@ -1,0 +1,80 @@
+{
+  "title": "Setup",
+  "fields": {
+    "smtp": {
+      "host": "Host SMTP",
+      "port": "Porta",
+      "username": "Username",
+      "password": "Password",
+      "fromEmail": "From Email",
+      "useTls": "Use TLS"
+    }
+  },
+  "strings": {
+    "description": "Configure the system settings for your tenant",
+    "smtp": {
+      "title": "SMTP Configuration",
+      "description": "Configure the email server settings",
+      "testConnection": "Test Connection",
+      "saveSettings": "Save Settings"
+    },
+    "printTemplates": {
+      "title": "Print Templates",
+      "description": "Manage print templates for devices",
+      "initDescription": "Initialize default templates",
+      "initDefaults": "Initialize Default",
+      "defaultTemplatesInfo": "Default print templates include:",
+      "defaultTemplatesList": [
+        "Complete Asset Sheet",
+        "Compact Asset Summary"
+      ],
+      "defaultTemplate1": "Complete Asset Sheet",
+      "defaultTemplate2": "Compact Asset Summary",
+      "templatesInitialized": "Default templates initialized successfully",
+      "templatesAlreadyExist": "Templates already exist for this tenant",
+      "templatesInitError": "Error initializing templates"
+    },
+    "printedKit": {
+      "title": "Printed Kit",
+      "description": "Manage the printed kit for devices",
+      "generate": "Generate Printed Kit",
+      "generating": "Generating...",
+      "success": "Printed Kit generated successfully",
+      "error": "Error generating Printed Kit",
+      "options": {
+        "includeAssets": "Include asset sheets",
+        "includeSites": "Include site information",
+        "includeContacts": "Include contacts",
+        "includeSuppliers": "Include suppliers",
+        "includePhotos": "Include asset photos",
+        "includeDocuments": "Include asset documents"
+      },
+      "info": {
+        "title": "Printed Kit - Complete Documentation",
+        "description": "Generate a complete printable documentation that includes:",
+        "items": [
+          "General tenant information",
+          "List of sites and areas",
+          "Complete asset sheets",
+          "Contacts and suppliers",
+          "Asset documents and photos"
+        ],
+        "item1": "General tenant information",
+        "item2": "List of sites and areas",
+        "item3": "Complete asset sheets",
+        "item4": "Contacts and suppliers",
+        "item5": "Asset documents and photos"
+      },
+      "generationOptions": "Generation options:"
+    }
+  },
+  "messages": {
+    "smtpSaved": "SMTP configuration saved successfully",
+    "smtpTestSuccess": "SMTP connection tested successfully",
+    "templatesInitialized": "Default templates initialized successfully",
+    "templatesAlreadyExist": "Templates already exist for this tenant",
+    "smtpSaveError": "Error saving SMTP configuration",
+    "smtpTestError": "Error testing SMTP connection",
+    "templatesInitError": "Error initializing templates"
+  }
+}

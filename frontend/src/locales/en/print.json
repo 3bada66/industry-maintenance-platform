@@ -1,0 +1,16 @@
+{
+    "title": "Print",
+    "dialogTitle": "Print Options",
+    "confirmPrint": "Confirm device print",
+    "print": "Print",
+    "templates": {
+        "loadError": "Error loading templates",
+        "tenantSpecific": "Tenant Specific",
+        "global": "Global"
+    },
+    "generation": {
+        "success": "Print generated successfully",
+        "error": "Error generating print"
+    }
+}
+

@@ -1,0 +1,38 @@
+{
+  "title": "Pcap",
+  "strings": {
+    "selectSite": "Select Site",
+    "selectSiteBeforeUpload": "Please select a site before uploading files",
+    "selectPcap": "Select PCAP Files",
+    "preview": "Preview",
+    "processing": "Processing...",
+    "confirmImport": "Confirm Import",
+    "filesUploaded": "Files uploaded successfully",
+    "devicesFound": "Devices found",
+    "newDevicesCreated": "New devices created",
+    "devicesUpdated": "Devices updated",
+    "fetchSitesError": "Error loading sites",
+    "missingSelection": "Missing selection",
+    "uploadError": "Upload error: ",
+    "importSuccess": "Import completed successfully",
+    "previewTitle": "PCAP Import Preview",
+    "newManufacturers": "New Manufacturers:",
+    "assetsToCreate": "Asset da creare:",
+    "assetsToUpdate": "Assets to update:",
+    "changes": "Changes",
+    "name": "Name",
+    "ip": "IP",
+    "mac": "MAC",
+    "vendor": "Vendor",
+    "protocols": "Protocols",
+    "pcapFileLimit": "File size limit",
+    "fileTooLarge": "File too large"
+  },
+  "messages": {
+    "success": "Operation completed successfully",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "confirmDelete": "Are you sure you want to delete this item?"
+  }
+}

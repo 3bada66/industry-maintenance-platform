@@ -1,0 +1,28 @@
+{
+  "title": "Areas",
+  "messages": {
+    "fetchError": "Error loading areas",
+    "created": "Area created successfully",
+    "createError": "Error creating area",
+    "updated": "Area updated successfully",
+    "updateError": "Error updating area",
+    "deleted": "Area deleted successfully",
+    "deleteError": "Error deleting area",
+    "bulkUpdated": "Areas updated successfully",
+    "bulkUpdateError": "Error updating areas",
+    "restored": "Area restored successfully",
+    "restoreError": "Error restoring area",
+    "hardDeleted": "Area permanently deleted successfully",
+    "hardDeleteError": "Error permanently deleting area",
+    "trashEmptied": "Trash emptied successfully",
+    "emptyTrashError": "Error emptying trash"
+  },
+  "fields": {
+    "typology": "Typology",
+    "name": "Area Name"
+  },
+  "strings": {
+    "select": "Select",
+    "info": "Information"
+  }
+}

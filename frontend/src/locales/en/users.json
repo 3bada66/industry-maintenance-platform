@@ -1,0 +1,23 @@
+{
+  "title": "Users",
+  "fields": {
+    "role": "Role",
+    "status": "Status",
+    "lastLogin": "Last Login",
+    "resetPassword": "Reset Password",
+    "password": "Password"
+  },
+  "messages": {
+    "fetchError": "Error loading users",
+    "fetchRolesError": "Error loading roles",
+    "createError": "Error creating user",
+    "updateError": "Error updating user",
+    "deleteError": "Error deleting user",
+    "bulkUpdateError": "Error in bulk update of users",
+    "userNotFound": "User not found"
+  },
+  "strings": {
+    "active": "Active",
+    "inactive": "Inactive"
+  }
+}

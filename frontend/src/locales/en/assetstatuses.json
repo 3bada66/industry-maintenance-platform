@@ -1,0 +1,11 @@
+{
+    "title": "Asset Statuses",
+    "messages": {
+        "fetchError": "Error loading asset statuses",
+        "created": "Asset status created successfully",
+        "createError": "Error creating asset status",
+        "updated": "Asset status updated successfully",
+        "updateError": "Error updating asset status"
+    } 
+}
+

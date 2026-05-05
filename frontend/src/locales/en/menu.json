@@ -1,0 +1,34 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "assets": "Assets",
+    "assettypes": "Asset Types",
+    "assetstatuses": "Asset Statuses",
+    "sites": "Sites",
+    "areas": "Areas",
+    "locations": "Locations",
+    "suppliers": "Suppliers",
+    "manufacturers": "Manufacturers",
+    "contacts": "Contacts",
+    "users": "Users",
+    "roles": "Roles",
+    "networkMap": "Network Map",
+    "profile": "Profile",
+    "pcap": "PCAP",
+    "auditLogs": "Audit Logs",
+    "setup": "Setup",
+    "settings": "Settings",
+    "logout": "Logout",
+    "utility": "Utility",
+    "monitoring": "Technical Monitoring",
+    "managementMonitoring": "Management Monitoring",
+    "riskDashboard": "Risk Dashboard",
+    "aboutUs": "About Us"
+  },
+  "section": {
+    "management": "Management",
+    "registry": "Registry",
+    "utility": "Utility",
+    "monitoring": "Monitoring"
+  }
+}

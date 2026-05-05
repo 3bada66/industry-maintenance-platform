@@ -1,0 +1,93 @@
+
+import { createRouter, createWebHistory } from 'vue-router'
+import Login from './pages/Login.vue'
+import Dashboard from './pages/Dashboard.vue'
+import TechnicalMonitoring from './pages/TechnicalMonitoring.vue'
+import ManagementMonitoring from './pages/ManagementMonitoring.vue'
+import RiskDashboard from './pages/RiskDashboard.vue'
+import AboutUs from './pages/AboutUs.vue'
+import Assets from './pages/Assets.vue'
+import AssetDetail from './pages/AssetDetail.vue'
+import SiteDetail from './pages/SiteDetail.vue'
+import Suppliers from './pages/Suppliers.vue'
+import SupplierDetail from './pages/SupplierDetail.vue'
+import Manufacturers from './pages/Manufacturers.vue'
+import ManufacturerDetail from './pages/ManufacturerDetail.vue'
+import AssetTypes from './pages/AssetTypes.vue'
+import AssetTypeDetail from './pages/AssetTypeDetail.vue'
+import Sites from './pages/Sites.vue'
+import Areas from './pages/Areas.vue'
+import Users from './pages/Users.vue'
+import Utility from './pages/Utility.vue'
+import AssetStatuses from './pages/AssetStatuses.vue'
+import Locations from './pages/Locations.vue'
+import Contacts from './pages/Contacts.vue'
+import ContactDetail from './pages/ContactDetail.vue'
+import AuditLogs from './pages/AuditLogs.vue'
+import Roles from './pages/Roles.vue'
+import RoleDetails from './pages/RoleDetails.vue'
+import Setup from './pages/Setup.vue'
+import SetupWizard from './pages/SetupWizard.vue'
+import Profile from './pages/Profile.vue'
+import NetworkMap from './pages/NetworkMap.vue'
+import api from './api/api'
+import { useAuthStore } from './store/auth'
+
+const routes = [
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true } },
+  { path: '/monitoring', name: 'TechnicalMonitoring', component: TechnicalMonitoring, meta: { requiresAuth: true } },
+  { path: '/management', name: 'ManagementMonitoring', component: ManagementMonitoring, meta: { requiresAuth: true } },
+  { path: '/risk', name: 'RiskDashboard', component: RiskDashboard, meta: { requiresAuth: true } },
+  { path: '/about', name: 'AboutUs', component: AboutUs, meta: { requiresAuth: true } },
+  { path: '/assets', name: 'Assets', component: Assets, meta: { requiresAuth: true } },
+  { path: '/assets/:id', name: 'AssetDetail', component: AssetDetail, meta: { requiresAuth: true } },
+  { path: '/sites', name: 'Sites', component: Sites, meta: { requiresAuth: true } },
+  { path: '/sites/:id', name: 'SiteDetail', component: SiteDetail, meta: { requiresAuth: true } },
+  { path: '/areas', name: 'Areas', component: Areas, meta: { requiresAuth: true } },
+  { path: '/suppliers', name: 'Suppliers', component: Suppliers, meta: { requiresAuth: true } },
+  { path: '/suppliers/:id', name: 'SupplierDetail', component: SupplierDetail, meta: { requiresAuth: true } },
+  { path: '/manufacturers', name: 'Manufacturers', component: Manufacturers, meta: { requiresAuth: true } },
+  { path: '/manufacturers/:id', name: 'ManufacturerDetail', component: ManufacturerDetail, meta: { requiresAuth: true } },
+  { path: '/asset-types', name: 'AssetTypes', component: AssetTypes, meta: { requiresAuth: true } },
+  { path: '/asset-types/:id', name: 'AssetTypeDetail', component: AssetTypeDetail, meta: { requiresAuth: true } },  
+  { path: '/utility', name: 'Utility', component: Utility, meta: { requiresAuth: true } },
+  { path: '/users', name: 'Users', component: Users, meta: { requiresAuth: true } },
+  { path: '/users/:id', name: 'UserDetail', component: () => import('./pages/UserDetail.vue'), meta: { requiresAuth: true } },
+  { path: '/asset-statuses', name: 'AssetStatuses', component: AssetStatuses, meta: { requiresAuth: true } },
+  { path: '/locations', name: 'Locations', component: Locations, meta: { requiresAuth: true } },
+  { path: '/contacts', name: 'Contacts', component: Contacts, meta: { requiresAuth: true } },
+  { path: '/contacts/:id', name: 'ContactDetail', component: ContactDetail,meta: { requiresAuth: true }  },
+  { path: '/audit-logs', name: 'AuditLogs', component: AuditLogs, meta: { requiresAuth: true } },
+  { path: '/roles', name: 'Roles', component: Roles, meta: { requiresAuth: true } },
+  { path: '/roles/:id', name: 'RoleDetails', component: RoleDetails, meta: { requiresAuth: true } },
+  { path: '/setup', name: 'Setup', component: Setup, meta: { requiresAuth: true } },
+  { path: '/setup-wizard', name: 'SetupWizard', component: SetupWizard, meta: { requiresAuth: true } },
+  { path: '/profile', name: 'Profile', component: Profile, meta: { requiresAuth: true } },
+  { path: '/network-map', name: 'NetworkMap', component: NetworkMap, meta: { requiresAuth: true } },
+  { path: '/logout', name: 'Logout', beforeEnter: (to, from, next) => {
+    const store = useAuthStore()
+    store.logout()
+    next(false)
+  } }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth) {
+    try {
+      await api.getCurrentUser()
+      next()
+    } catch (error) {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

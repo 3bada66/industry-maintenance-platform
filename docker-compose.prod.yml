@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro"
+      - "./nginx/ssl:/etc/nginx/ssl:ro"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - industry-maintenance-platform-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: industry-maintenance-platform_user
+      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: industry-maintenance-platform
+    volumes:
+      - industry-maintenance-platform_postgres_data:/var/lib/postgresql/data
+      - ./backend/init-db.sql:/docker-entrypoint-initdb.d/01-init-extensions.sql:ro
+    networks:
+      - industry-maintenance-platform-network
+    expose:
+      - "5432"
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=postgresql://industry-maintenance-platform_user:secure_password_123@db:5432/industry-maintenance-platform
+      - SECRET_KEY=${SECRET_KEY:-changeme-replace-in-production-with-a-strong-secret}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - CORS_ORIGINS=https://localhost,https://127.0.0.1,https://imp.local
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - SECURE_COOKIES=true
+      - SAME_SITE_COOKIES=strict
+    depends_on:
+      - db
+    networks:
+      - industry-maintenance-platform-network
+    expose:
+      - "8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    networks:
+      - industry-maintenance-platform-network
+    expose:
+      - "80"
+    restart: unless-stopped
+
+volumes:
+  industry-maintenance-platform_postgres_data:
+
+networks:
+  industry-maintenance-platform-network:
+    driver: bridge

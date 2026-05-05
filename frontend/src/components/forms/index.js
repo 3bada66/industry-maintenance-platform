@@ -1,0 +1,12 @@
+// Componenti form
+export { default as AssetForm } from './AssetForm.vue'
+export { default as UserForm } from './UserForm.vue'
+export { default as ManufacturerForm } from './ManufacturerForm.vue'
+export { default as SupplierForm } from './SupplierForm.vue'
+export { default as ContactForm } from './ContactForm.vue'
+export { default as LocationForm } from './LocationForm.vue'
+export { default as SiteForm } from './SiteForm.vue'
+export { default as AssetStatusForm } from './AssetStatusForm.vue'
+export { default as AssetTypeForm } from './AssetTypeForm.vue'
+export { default as AssetInterfacesForm } from './AssetInterfacesForm.vue'
+export { default as AssetCustomFields } from './AssetCustomFields.vue' 

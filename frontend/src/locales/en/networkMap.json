@@ -1,0 +1,39 @@
+{
+    "title": "Network Map",
+    "strings": {
+        "description": "View network topology and physical connections between industrial assets",
+        "filters": "Filters",
+        "filterBySite": "Filter by Site",
+        "filterByAssetType": "Filter by Asset Type",
+        "filterByProtocol": "Filter by Protocol",
+        "showOnlyConnected": "Show only connected assets",
+        "allSites": "All sites",
+        "allTypes": "All types",
+        "allProtocols": "All protocols",
+        "clearFilters": "Clear filters",
+        "exportMap": "Export map",
+        "totalAssets": "Total assets",
+        "connectedAssets": "Connected assets",
+        "totalConnections": "Total connections",
+        "isolatedAssets": "Isolated assets",
+        "networkTopology": "Network Topology",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
+        "resetView": "Reset view",
+        "fitToScreen": "Fit to screen",
+        "togglePhysics": "Toggle physics",
+        "loading": "Loading...",
+        "assetDetails": "Asset Details",
+        "assetType": "Asset Type",
+        "site": "Site",
+        "status": "Status",
+        "riskScore": "Risk Score",
+        "connections": "Connections",
+        "viewDetails": "View details",
+        "exportInfo": "Export information",
+        "exportNotImplemented": "Map export is not yet implemented"
+    },
+    "messages": {
+        "fetchError": "Error loading network map data"
+    }
+}

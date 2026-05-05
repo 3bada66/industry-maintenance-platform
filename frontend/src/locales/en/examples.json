@@ -1,0 +1,15 @@
+{
+  "title": "Smart Translation Examples",
+  "description": "Examples of the new intelligent translation system",
+  "welcomeMessage": "Welcome {name}!",
+  "itemsCount": {
+    "singular": "1 item",
+    "plural": "{count} items"
+  },
+  "status": {
+    "pending": "Pending",
+    "active": "Active", 
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  }
+}

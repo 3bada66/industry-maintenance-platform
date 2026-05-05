@@ -1,0 +1,6 @@
+name,description,vat_number,tax_code,address,city,zip_code,province,country,phone,email,website,notes
+Acme Corporation,IT components distributor,IT12345678901,ACME123456789,Via Roma 123,Rome,00100,RM,Italy,+39 06 12345678,info@acme.com,https://www.acme.com,Reliable IT components supplier
+Beta Industries,Industrial equipment supplier,DE987654321,BETA987654321,Via Milano 456,Milan,20100,MI,Italy,+39 02 87654321,contact@beta.com,https://www.beta.com,Specialized in industrial machinery
+Gamma Electronics,Electronics distributor,FR11223344567,GAMMA112233445,Via Napoli 789,Naples,80100,NA,Italy,+39 081 11223344,info@gamma.com,https://www.gamma.com,Quality electronic components
+Delta Solutions,IT consulting services,GB556677889,DELTA556677889,Via Firenze 321,Florence,50100,FI,Italy,+39 055 55667788,info@delta.com,https://www.delta.com,IT consulting and support
+Epsilon Software,Software development company,ES998877665,EPSILON998877665,Via Torino 654,Turin,10100,TO,Italy,+39 011 99887766,info@epsilon.com,https://www.epsilon.com,Custom software development 
