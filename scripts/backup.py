@@ -27,7 +27,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-class Industry Maintenance PlatformBackup:
+class IndustryMaintenancePlatformBackup:
     def __init__(self, backup_dir="backups", include_logs=False):
         self.backup_dir = Path(backup_dir)
         self.include_logs = include_logs
@@ -240,7 +240,7 @@ def main():
         return
     
     try:
-        backup = Industry Maintenance PlatformBackup(args.backup_dir, args.include_logs)
+        backup = IndustryMaintenancePlatformBackup(args.backup_dir, args.include_logs)
         backup_file = backup.create_backup()
         print(f"✅ Backup completed: {backup_file}")
         

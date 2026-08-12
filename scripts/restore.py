@@ -25,7 +25,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-class Industry Maintenance PlatformRestore:
+class IndustryMaintenancePlatformRestore:
     def __init__(self, backup_file, restore_dir="restore_temp"):
         self.backup_file = Path(backup_file)
         self.restore_dir = Path(restore_dir)
@@ -282,7 +282,7 @@ def main():
         return
     
     try:
-        restore = Industry Maintenance PlatformRestore(args.backup_file)
+        restore = IndustryMaintenancePlatformRestore(args.backup_file)
         restore.restore(force=args.force)
         
     except Exception as e:
